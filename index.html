@@ -475,14 +475,12 @@
     </div>
 
     <script>
-        // 1️⃣ مفتاح الذكاء الاصطناعي المستقل (Gemini API Key) مقسم لمنع فحص GitHub
-        const geminiPart1 = "AQ.Ab8RN6J2-PdEx5z59kKGPcaa";
-        const geminiPart2 = "MgGPx6k07xaO4AT4-c-WBfRDFw";
-        const GEMINI_API_KEY = geminiPart1 + geminiPart2;
+        // مفتاح الـ API الرسمي والمطابق لمعايير Google (يبدأ بـ AIzaSy)
+        const GEMINI_API_KEY = "AIzaSyAenkYYrGh5o-vrcBtgOvtwAmvkUdcDpJE";
 
-        // 2️⃣ إعدادات Firebase الخاصة بالخدمات والمصادقة وبالمفتاح الأصلي (AIzaSy)
+        // إعدادات Firebase الخاصة بالمصادقة وقاعدة البيانات
         const firebaseConfig = { 
-            apiKey: "AIzaSyAenkYYrGh5o-vrcBtgOvtwAmvkUdcDpJE", 
+            apiKey: GEMINI_API_KEY, 
             authDomain: "keno-ai-fe61c.firebaseapp.com", 
             databaseURL: "https://keno-ai-fe61c-default-rtdb.firebaseio.com", 
             projectId: "keno-ai-fe61c", 
@@ -1084,7 +1082,8 @@
                 const minDelay = currentAiModel === 'accurate' ? 6000 : 3000;
                 const delayPromise = new Promise(resolve => setTimeout(resolve, minDelay));
 
-                const fetchPromise = fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                // تم تحسين رابط الاستدعاء إلى إصدار v1 المستقر والمباشر
+                const fetchPromise = fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
