@@ -475,12 +475,14 @@
     </div>
 
     <script>
-        // مفتاح الـ API الرسمي والمطابق لمعايير Google (يبدأ بـ AIzaSy)
-        const GEMINI_API_KEY = "AIzaSyAenkYYrGh5o-vrcBtgOvtwAmvkUdcDpJE";
+        // 1. ضع مفتاح Gemini API الجديد هنا (من Google AI Studio)
+        const GEMINI_API_KEY = "ضع_مفتاح_GEMINI_الجديد_هنا";
 
-        // إعدادات Firebase الخاصة بالمصادقة وقاعدة البيانات
+        // 2. ضع مفتاح Firebase Web API الأصلي هنا (من Firebase Console -> Project Settings)
+        const FIREBASE_API_KEY = "ضع_مفتاح_FIREBASE_الأصلي_هنا";
+
         const firebaseConfig = { 
-            apiKey: GEMINI_API_KEY, 
+            apiKey: FIREBASE_API_KEY, 
             authDomain: "keno-ai-fe61c.firebaseapp.com", 
             databaseURL: "https://keno-ai-fe61c-default-rtdb.firebaseio.com", 
             projectId: "keno-ai-fe61c", 
@@ -508,7 +510,6 @@
             { icon: 'fa-seedling', text: 'خطوات بناء الثقة بالنفس والتطوير الذاتي' }
         ];
 
-        // حفظ المحادثات في الغرفة السحابية الخاصة بالمستخدم
         async function saveChats() {
             if (isTempChatActive) return;
             const user = auth.currentUser;
@@ -523,7 +524,6 @@
             }
         }
 
-        // تسجيل الدخول بـ Google
         document.getElementById('google-login-btn').onclick = async () => {
             const provider = new firebase.auth.GoogleAuthProvider();
             try {
@@ -538,7 +538,6 @@
             }
         };
 
-        // المتابعة التلقائية وحساب المستخدمين
         auth.onAuthStateChanged(async (user) => {
             const loginBtn = document.getElementById('login-open-btn');
             const sidebarUser = document.getElementById('sidebar-username');
@@ -586,7 +585,6 @@
             }
         });
 
-        // تغيير اسم الحساب (مرة كل أسبوع)
         window.changeDisplayName = async function() {
             const user = auth.currentUser;
             if (!user) return;
@@ -1079,15 +1077,15 @@
                     contents = [{ parts: [{ text }] }];
                 }
 
-                const minDelay = currentAiModel === 'accurate' ? 6000 : 3000;
+                const minDelay = currentAiModel === 'accurate' ? 2000 : 800;
                 const delayPromise = new Promise(resolve => setTimeout(resolve, minDelay));
 
-                // تم تحسين رابط الاستدعاء إلى إصدار v1 المستقر والمباشر
-                const fetchPromise = fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                // استخدام v1beta و camelCase لـ systemInstruction
+                const fetchPromise = fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        system_instruction: {
+                        systemInstruction: {
                             parts: [{ text: strictSystemInstruction }]
                         },
                         contents: contents
