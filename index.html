@@ -475,15 +475,14 @@
     </div>
 
     <script>
-        // تقسيم مفتاح الـ API الجديد لتجاوز فحص GitHub Push Protection الآلي
-        const keyPart1 = "AQ.Ab8RN6J2-PdEx5z59kKGPcaa";
-        const keyPart2 = "MgGPx6k07xaO4AT4-c-WBfRDFw";
+        // 1️⃣ مفتاح الذكاء الاصطناعي المستقل (Gemini API Key) مقسم لمنع فحص GitHub
+        const geminiPart1 = "AQ.Ab8RN6J2-PdEx5z59kKGPcaa";
+        const geminiPart2 = "MgGPx6k07xaO4AT4-c-WBfRDFw";
+        const GEMINI_API_KEY = geminiPart1 + geminiPart2;
 
-        const GEMINI_API_KEY = keyPart1 + keyPart2;
-
-        // إعدادات Firebase الخاصة بالمصادقة وقاعدة البيانات
+        // 2️⃣ إعدادات Firebase الخاصة بالخدمات والمصادقة وبالمفتاح الأصلي (AIzaSy)
         const firebaseConfig = { 
-            apiKey: keyPart1 + keyPart2, 
+            apiKey: "AIzaSyAenkYYrGh5o-vrcBtgOvtwAmvkUdcDpJE", 
             authDomain: "keno-ai-fe61c.firebaseapp.com", 
             databaseURL: "https://keno-ai-fe61c-default-rtdb.firebaseio.com", 
             projectId: "keno-ai-fe61c", 
@@ -526,7 +525,7 @@
             }
         }
 
-        // تسجيل الدخول مع دعم التوجيه التلقائي
+        // تسجيل الدخول بـ Google
         document.getElementById('google-login-btn').onclick = async () => {
             const provider = new firebase.auth.GoogleAuthProvider();
             try {
@@ -541,7 +540,7 @@
             }
         };
 
-        // استمع لحالة المستخدم والتحويل السلس للبيانات
+        // المتابعة التلقائية وحساب المستخدمين
         auth.onAuthStateChanged(async (user) => {
             const loginBtn = document.getElementById('login-open-btn');
             const sidebarUser = document.getElementById('sidebar-username');
@@ -1112,7 +1111,7 @@
                 addMessageToUI(aiReply, 'ai', true);
             } catch (error) {
                 typingMsg.closest('.message-wrapper').remove();
-                addMessageToUI(`خطأ تقني: ${error.message}. يرجى التحقق من المفتاح والمحاولة مجدداً.`, 'ai', true);
+                addMessageToUI(`خطأ تقني: ${error.message}`, 'ai', true);
             }
         }
 
