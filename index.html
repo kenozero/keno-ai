@@ -475,14 +475,12 @@
     </div>
 
     <script>
-        // 1. ضع مفتاح Gemini API الجديد هنا (من Google AI Studio)
-        const GEMINI_API_KEY = "ضع_مفتاح_GEMINI_الجديد_هنا";
+        // مفتاح Gemini API المحدد والمحدث
+        const GEMINI_API_KEY = "AQ.Ab8RN6KpAY61RyvEW0rygDtT5gWtY308tDTmQglx8Gfn57MCXA";
 
-        // 2. ضع مفتاح Firebase Web API الأصلي هنا (من Firebase Console -> Project Settings)
-        const FIREBASE_API_KEY = "ضع_مفتاح_FIREBASE_الأصلي_هنا";
-
+        // إعدادات Firebase الخاص بالمشروع
         const firebaseConfig = { 
-            apiKey: FIREBASE_API_KEY, 
+            apiKey: GEMINI_API_KEY, 
             authDomain: "keno-ai-fe61c.firebaseapp.com", 
             databaseURL: "https://keno-ai-fe61c-default-rtdb.firebaseio.com", 
             projectId: "keno-ai-fe61c", 
@@ -1080,7 +1078,6 @@
                 const minDelay = currentAiModel === 'accurate' ? 2000 : 800;
                 const delayPromise = new Promise(resolve => setTimeout(resolve, minDelay));
 
-                // استخدام v1beta و camelCase لـ systemInstruction
                 const fetchPromise = fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
