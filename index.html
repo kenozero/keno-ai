@@ -8,6 +8,7 @@
     
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
 
     <style>
         :root {
@@ -99,7 +100,27 @@
         .search-box, .input-box { width: 100%; padding: 12px; background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 12px; outline: none; transition: border 0.3s; }
         .search-box:focus, .input-box:focus { border-color: var(--accent-color); }
         
-        .main-btn { padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; }
+        .main-btn { padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; width: 100%; border: none; }
+
+        .google-btn {
+            background: #ffffff;
+            color: #111111;
+            font-size: 0.95rem;
+            font-weight: bold;
+            padding: 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+        .google-btn:hover {
+            background: #f1f1f1;
+            transform: translateY(-1px);
+        }
 
         .chat-list { flex: 1; overflow-y: auto; padding: 10px; }
         .chat-item-container { margin-bottom: 5px; position: relative; }
@@ -124,9 +145,6 @@
         .profile-section { background: var(--sidebar-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px; display: none; flex-direction: column; align-items: center; text-align: center; }
         .profile-section h3 { color: var(--text-color); margin-bottom: 5px; font-size: 1.2rem; }
         .profile-section p { color: #888; font-size: 0.9rem; margin-bottom: 15px; }
-        #prof-pass-container { background: var(--bg-color); border: 1px solid var(--border-color); padding: 10px; border-radius: 8px; width: 100%; cursor: pointer; transition: 0.3s; }
-        #prof-pass-container:hover { border-color: var(--accent-color); }
-        .profile-pass { color: #666; font-size: 1rem; letter-spacing: 4px; }
         
         .setting-group { margin-bottom: 15px; display: flex; flex-direction: column; gap: 8px; }
         .setting-group label { font-weight: bold; color: var(--accent-color); font-size: 0.95rem; }
@@ -336,7 +354,6 @@
         </div>
     </div>
 
-    <!-- نافذة الإعدادات -->
     <div id="settings-modal" class="modal">
         <div class="modal-header">
             <h2 id="txt-settings-title">الإعدادات</h2>
@@ -348,12 +365,10 @@
             <h3 id="prof-name"></h3>
             <p id="prof-email"></p>
             
-            <div id="prof-pass-container">
-                <span id="prof-pass" class="profile-pass">••••••••</span>
-            </div>
-            
-            <div id="reset-pass-container" style="display:none; width: 100%; margin-top: 10px;">
-                <button class="text-btn" id="reset-pass-btn-inline">إعادة تعيين كلمة المرور</button>
+            <div id="name-change-container" style="display:none; width: 100%; margin-top: 10px;">
+                <button class="main-btn luxurious-gradient" style="font-size:0.85rem; padding:10px;" onclick="changeDisplayName()">
+                    <i class="fas fa-user-edit"></i> تغيير اسم الحساب (مرة كل أسبوع)
+                </button>
             </div>
             
             <button class="text-btn" style="color:#ff4444; margin-top:15px; width:100%; border-top: 1px solid var(--border-color); padding-top:15px;" onclick="logout()">تسجيل الخروج</button>
@@ -396,7 +411,6 @@
         <div class="app-version">إصدار التطبيق: 1.0.0 (KENO_ZERO Store)</div>
     </div>
 
-    <!-- نافذة دفتر الملاحظات -->
     <div id="notepad-modal" class="modal">
         <div class="modal-header">
             <h2>دفتر ملاحظاتي</h2>
@@ -407,21 +421,19 @@
         </div>
     </div>
 
-    <!-- نافذة تسجيل الدخول / إنشاء حساب -->
     <div id="login-modal" class="modal">
         <div class="modal-header">
-            <h2 id="txt-login-title">تسجيل الدخول</h2>
+            <h2>تسجيل الدخول</h2>
             <button class="close-modal" onclick="closeModals()"><i class="fas fa-times"></i></button>
         </div>
-        <div class="setting-group">
-            <input type="text" id="login-user" class="input-box" placeholder="اسم المستخدم (مثال: KENO_ZERO)" style="display: none;">
-            <input type="email" id="login-email" class="input-box" placeholder="البريد الإلكتروني">
-            <input type="password" id="login-pass" class="input-box" placeholder="كلمة المرور">
+        <div style="text-align: center; margin: 30px 0; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;">
+            <i class="fab fa-google" style="font-size: 4rem; color: var(--accent-color);"></i>
+            <p style="color: var(--text-color); font-size: 1rem; line-height: 1.6; max-width: 90%;">سجل دخولك بنقرة واحدة باستخدام حساب Google لحفظ محادثاتك وسجل بياناتك بأمان عبر السيرفر.</p>
+            <button class="google-btn" id="google-login-btn">
+                <i class="fab fa-google" style="color: #4285F4; font-size: 1.2rem;"></i>
+                <span>تسجيل الدخول باستخدام Google</span>
+            </button>
         </div>
-        <button class="main-btn luxurious-gradient" id="submit-login-btn">دخول</button>
-        
-        <button class="text-btn" style="margin-top:20px; width:100%; font-weight:bold;" id="toggle-auth-mode-btn" onclick="toggleAuthMode()">إنشاء حساب</button>
-        <button class="text-btn" style="margin-top:8px; width:100%; color:#888;" id="reset-pass-btn-modal">نسيت كلمة المرور؟</button>
     </div>
 
     <div id="chat-container">
@@ -460,12 +472,12 @@
     </div>
 
     <script>
-        // دمج مفتاح الـ API برمجيًا لتجاوز فحص GitHub Push Protection بنجاح
-        const keyPart1 = "AIzaSy";
-        const keyPart2 = "AenkYYrGh5o-vrcBtgOvtwAmvkUdcDpJE";
+        // 🔑 مفتاح مفصل ومستقل لخدمة Google Gemini AI من aistudio.google.com
+        const GEMINI_API_KEY = "AIzaSyAenkYYrGh5o-vrcBtgOvtwAmvkUdcDpJE";
 
+        // 🛠️ إعدادات Firebase الخاصة بالمصادقة وقاعدة البيانات فقط
         const firebaseConfig = { 
-            apiKey: keyPart1 + keyPart2, 
+            apiKey: "AIzaSyAenkYYrGh5o-vrcBtgOvtwAmvkUdcDpJE", 
             authDomain: "keno-ai-fe61c.firebaseapp.com", 
             databaseURL: "https://keno-ai-fe61c-default-rtdb.firebaseio.com", 
             projectId: "keno-ai-fe61c", 
@@ -476,13 +488,13 @@
         };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
+        const auth = firebase.auth();
 
-        let allChats = JSON.parse(localStorage.getItem('keno_all_chats')) || [];
+        let allChats = [];
         let currentChatId = null;
         let isTempChatActive = false;
         let currentAiModel = 'fast';
         let selectedImageData = null;
-        let isSignUpMode = false;
 
         const usefulPromptsPool = [
             { icon: 'fa-brain', text: 'كيف أصنع عادة يومية إيجابية وتدوم؟' },
@@ -493,24 +505,126 @@
             { icon: 'fa-seedling', text: 'خطوات بناء الثقة بالنفس والتطوير الذاتي' }
         ];
 
-        window.toggleAuthMode = function() {
-            isSignUpMode = !isSignUpMode;
-            const title = document.getElementById('txt-login-title');
-            const submitBtn = document.getElementById('submit-login-btn');
-            const toggleBtn = document.getElementById('toggle-auth-mode-btn');
-            const userInput = document.getElementById('login-user');
-
-            if (isSignUpMode) {
-                title.innerText = "إنشاء حساب جديد";
-                submitBtn.innerText = "إنشاء حساب";
-                toggleBtn.innerText = "لدي حساب";
-                userInput.style.display = "block";
+        // حفظ المحادثات في الغرفة السحابية الخاصة بالمستخدم
+        async function saveChats() {
+            if (isTempChatActive) return;
+            const user = auth.currentUser;
+            if (user) {
+                try {
+                    await database.ref('users/' + user.uid + '/chats').set(allChats);
+                } catch (e) {
+                    console.error("خطأ أثناء حفظ البيانات السحابية:", e);
+                }
             } else {
-                title.innerText = "تسجيل الدخول";
-                submitBtn.innerText = "دخول";
-                toggleBtn.innerText = "إنشاء حساب";
-                userInput.style.display = "none";
+                localStorage.setItem('keno_guest_chats', JSON.stringify(allChats));
             }
+        }
+
+        // تسجيل الدخول مع التعامل مع الأخطاء
+        document.getElementById('google-login-btn').onclick = async () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            try {
+                await auth.signInWithPopup(provider);
+                closeModals();
+            } catch (error) {
+                if (error.code === 'auth/popup-blocked') {
+                    await auth.signInWithRedirect(provider);
+                } else {
+                    alert("حدث خطأ في التسجيل: " + error.message);
+                }
+            }
+        };
+
+        // استمع لحالة المستخدم والتحويل السلس للبيانات
+        auth.onAuthStateChanged(async (user) => {
+            const loginBtn = document.getElementById('login-open-btn');
+            const sidebarUser = document.getElementById('sidebar-username');
+            const profileSection = document.getElementById('profile-section');
+            const nameChangeContainer = document.getElementById('name-change-container');
+
+            if (user) {
+                loginBtn.style.display = 'none';
+                sidebarUser.style.display = 'inline-block';
+                profileSection.style.display = 'flex';
+                nameChangeContainer.style.display = 'block';
+
+                const userRef = database.ref('users/' + user.uid + '/profile');
+                const snapshot = await userRef.once('value');
+                let profileData = snapshot.val() || {};
+
+                const currentDisplayName = profileData.displayName || user.displayName || user.email.split('@')[0];
+                sidebarUser.innerText = currentDisplayName;
+                document.getElementById('prof-name').innerText = currentDisplayName;
+                document.getElementById('prof-email').innerText = user.email;
+
+                const chatsSnapshot = await database.ref('users/' + user.uid + '/chats').once('value');
+                let cloudChats = chatsSnapshot.val() || [];
+
+                let guestChats = JSON.parse(localStorage.getItem('keno_guest_chats')) || [];
+                if (guestChats.length > 0) {
+                    cloudChats = [...guestChats, ...cloudChats];
+                    localStorage.removeItem('keno_guest_chats');
+                }
+
+                allChats = cloudChats;
+                await saveChats();
+                renderSidebarChats();
+                createNewChat();
+
+            } else {
+                loginBtn.style.display = 'inline-block';
+                sidebarUser.style.display = 'none';
+                profileSection.style.display = 'none';
+                nameChangeContainer.style.display = 'none';
+
+                allChats = JSON.parse(localStorage.getItem('keno_guest_chats')) || [];
+                renderSidebarChats();
+                createNewChat();
+            }
+        });
+
+        // تغيير اسم الحساب (مرة كل أسبوع)
+        window.changeDisplayName = async function() {
+            const user = auth.currentUser;
+            if (!user) return;
+
+            const userRef = database.ref('users/' + user.uid + '/profile');
+            const snapshot = await userRef.once('value');
+            const profileData = snapshot.val() || {};
+            const lastChange = profileData.lastNameChangeTimestamp || 0;
+            const now = Date.now();
+            const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
+            if (now - lastChange < ONE_WEEK_MS) {
+                const remainingMs = ONE_WEEK_MS - (now - lastChange);
+                const remainingDays = Math.ceil(remainingMs / (1000 * 60 * 60 * 24));
+                alert(`عذراً، يمكنك تغيير اسم الحساب مرة واحدة كل أسبوع.\nيرجى الانتظار ${remainingDays} يوم/أيام لتتمكن من التغيير مجدداً.`);
+                return;
+            }
+
+            const newName = prompt("أدخل اسم الحساب الجديد:", document.getElementById('prof-name').innerText);
+            if (!newName || !newName.trim()) return;
+
+            try {
+                const trimmedName = newName.trim();
+                await user.updateProfile({ displayName: trimmedName });
+                await userRef.update({
+                    displayName: trimmedName,
+                    lastNameChangeTimestamp: now
+                });
+
+                document.getElementById('prof-name').innerText = trimmedName;
+                document.getElementById('sidebar-username').innerText = trimmedName;
+                alert("تم تغيير اسم الحساب بنجاح!");
+                createNewChat();
+            } catch (e) {
+                alert("حدث خطأ في تغيير الاسم: " + e.message);
+            }
+        };
+
+        window.logout = function() {
+            auth.signOut();
+            closeModals();
         };
 
         window.addEventListener('offline', () => { document.getElementById('network-status-bar').style.display = 'block'; });
@@ -570,8 +684,6 @@
             document.getElementById('model-menu').classList.remove('active');
         }
 
-        function saveChats() { if (!isTempChatActive) localStorage.setItem('keno_all_chats', JSON.stringify(allChats)); }
-
         const translations = {
             ar: { search: "بحث عن محادثة...", newChat: "بدء محادثة جديدة", settings: "الإعدادات", loginMenu: "تسجيل الدخول" },
             en: { search: "Search chat...", newChat: "New Chat", settings: "Settings", loginMenu: "Login" }
@@ -588,67 +700,10 @@
             renderSidebarChats();
         }
 
-        function updateAuthState() {
-            const user = JSON.parse(localStorage.getItem('keno_user'));
-            const loginBtn = document.getElementById('login-open-btn');
-            const sidebarUser = document.getElementById('sidebar-username');
-            const profileSection = document.getElementById('profile-section');
-
-            if (user) {
-                loginBtn.style.display = 'none';
-                sidebarUser.style.display = 'inline-block';
-                sidebarUser.innerText = user.name;
-                profileSection.style.display = 'flex';
-                document.getElementById('prof-name').innerText = user.name;
-                document.getElementById('prof-email').innerText = user.email;
-                document.getElementById('prof-pass').innerText = '••••••••';
-                document.getElementById('prof-pass').style.letterSpacing = '4px';
-                document.getElementById('reset-pass-container').style.display = 'none';
-            } else {
-                loginBtn.style.display = 'inline-block';
-                sidebarUser.style.display = 'none';
-                profileSection.style.display = 'none';
-            }
-        }
-
-        document.getElementById('prof-pass-container').onclick = () => {
-            const passSpan = document.getElementById('prof-pass');
-            const resetCont = document.getElementById('reset-pass-container');
-            const user = JSON.parse(localStorage.getItem('keno_user'));
-            
-            if (passSpan.innerText === '••••••••') {
-                passSpan.innerText = user.pass;
-                passSpan.style.letterSpacing = 'normal';
-                passSpan.style.color = 'var(--text-color)';
-                resetCont.style.display = 'block';
-            } else {
-                passSpan.innerText = '••••••••';
-                passSpan.style.letterSpacing = '4px';
-                passSpan.style.color = '#666';
-                resetCont.style.display = 'none';
-            }
-        };
-
-        document.getElementById('submit-login-btn').onclick = () => {
-            const name = isSignUpMode ? document.getElementById('login-user').value : (document.getElementById('login-email').value.split('@')[0]);
-            const email = document.getElementById('login-email').value;
-            const pass = document.getElementById('login-pass').value;
-            if(email && pass) {
-                localStorage.setItem('keno_user', JSON.stringify({name: name || 'مستخدم', email, pass}));
-                updateAuthState();
-                closeModals();
-            }
-        };
-
-        window.logout = function() {
-            localStorage.removeItem('keno_user');
-            updateAuthState();
-        };
-
         window.clearAllData = function() {
             if(confirm("تحذير: سيتم مسح جميع المحادثات والبيانات بشكل نهائي. هل أنت متأكد؟")) {
-                localStorage.removeItem('keno_all_chats');
                 allChats = [];
+                saveChats();
                 createNewChat();
                 renderSidebarChats();
                 closeModals();
@@ -720,10 +775,10 @@
             container.innerHTML = '';
             if(isTempChatActive) container.appendChild(tempBanner);
             
-            const user = JSON.parse(localStorage.getItem('keno_user'));
+            const currentUser = auth.currentUser;
             const hours = new Date().getHours();
             const timeGreeting = hours < 12 ? "صباح الخير" : "مساء الخير";
-            const greetingText = user ? `${timeGreeting}، ${user.name} 👋` : "أهلاً بك في KENO AI 👋";
+            const greetingText = currentUser ? `${timeGreeting}، ${document.getElementById('prof-name').innerText || 'مستخدم'} 👋` : "أهلاً بك في KENO AI 👋";
 
             const shuffled = [...usefulPromptsPool].sort(() => 0.5 - Math.random());
             const card1 = shuffled[0];
@@ -1024,7 +1079,7 @@
                 const minDelay = currentAiModel === 'accurate' ? 6000 : 3000;
                 const delayPromise = new Promise(resolve => setTimeout(resolve, minDelay));
 
-                const fetchPromise = fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${firebaseConfig.apiKey}`, {
+                const fetchPromise = fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -1036,10 +1091,13 @@
                 });
 
                 const [response] = await Promise.all([fetchPromise, delayPromise]);
-
                 const data = await response.json();
-                let aiReply = "عذراً، لم أتمكن من الحصول على إجابة.";
 
+                if (!response.ok) {
+                    throw new Error(data.error?.message || "فشل الاتصال بالذكاء الاصطناعي");
+                }
+
+                let aiReply = "عذراً، لم أتمكن من الحصول على إجابة.";
                 if (data.candidates && data.candidates[0].content.parts[0].text) {
                     aiReply = data.candidates[0].content.parts[0].text;
                 }
@@ -1048,7 +1106,7 @@
                 addMessageToUI(aiReply, 'ai', true);
             } catch (error) {
                 typingMsg.closest('.message-wrapper').remove();
-                addMessageToUI("حدث خطأ في الاتصال بالسيرفر. يرجى التحقق من الشبكة والمحاولة مجدداً.", 'ai', true);
+                addMessageToUI(`خطأ تقني: ${error.message}. يرجى التحقق من تفعيل Gemini API والمحاولة مجدداً.`, 'ai', true);
             }
         }
 
@@ -1066,11 +1124,6 @@
         document.getElementById('login-open-btn').onclick = () => { 
             toggleSidebar(); 
             closeModals(); 
-            isSignUpMode = false;
-            document.getElementById('login-user').style.display = 'none';
-            document.getElementById('txt-login-title').innerText = "تسجيل الدخول";
-            document.getElementById('submit-login-btn').innerText = "دخول";
-            document.getElementById('toggle-auth-mode-btn').innerText = "إنشاء حساب";
             document.getElementById('login-modal').classList.add('active'); 
         };
 
@@ -1102,7 +1155,6 @@
         };
 
         applyLanguage();
-        updateAuthState();
         createNewChat();
     </script>
 </body>
