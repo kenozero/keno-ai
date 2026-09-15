@@ -475,12 +475,12 @@
     </div>
 
     <script>
-        // مفتاح Gemini API المحدد والمحدث
-        const GEMINI_API_KEY = "AQ.Ab8RN6KpAY61RyvEW0rygDtT5gWtY308tDTmQglx8Gfn57MCXA";
+        // مفتاح Gemini API الجديد والمستخرج بنجاح
+        const GEMINI_API_KEY = "AIzaSyAeTnEQmRvrXqocPQZeB4rPpr6dCJhoq3A";
 
-        // إعدادات Firebase الخاص بالمشروع
+        // إعدادات Firebase الخاصة بالمصادقة وقاعدة البيانات
         const firebaseConfig = { 
-            apiKey: GEMINI_API_KEY, 
+            apiKey: "AIzaSyAenkYYrGh5o-vrcBtgOvtwAmvkUdcDpJE", 
             authDomain: "keno-ai-fe61c.firebaseapp.com", 
             databaseURL: "https://keno-ai-fe61c-default-rtdb.firebaseio.com", 
             projectId: "keno-ai-fe61c", 
@@ -1075,14 +1075,16 @@
                     contents = [{ parts: [{ text }] }];
                 }
 
-                const minDelay = currentAiModel === 'accurate' ? 2000 : 800;
+                const minDelay = currentAiModel === 'accurate' ? 5000 : 2000;
                 const delayPromise = new Promise(resolve => setTimeout(resolve, minDelay));
 
                 const fetchPromise = fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({
-                        systemInstruction: {
+                        system_instruction: {
                             parts: [{ text: strictSystemInstruction }]
                         },
                         contents: contents
