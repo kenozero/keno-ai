@@ -117,10 +117,7 @@
             border: 1px solid var(--border-color);
             transition: all 0.2s ease;
         }
-        .google-btn:hover {
-            background: #f1f1f1;
-            transform: translateY(-1px);
-        }
+        .google-btn:hover { background: #f1f1f1; transform: translateY(-1px); }
 
         .chat-list { flex: 1; overflow-y: auto; padding: 10px; }
         .chat-item-container { margin-bottom: 5px; position: relative; }
@@ -155,96 +152,31 @@
         .danger-btn { background: rgba(255,68,68,0.1); color: #ff4444; border: 1px solid #ff4444; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
         .app-version { text-align: center; color: #555; font-size: 0.8rem; margin-top: 20px; padding-bottom: 20px; }
 
-        #chat-container { 
-            flex: 1; 
-            overflow-y: auto; 
-            padding: 0; 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 0;
-        }
+        #chat-container { flex: 1; overflow-y: auto; padding: 0; display: flex; flex-direction: column; min-height: 0; }
         .temp-banner { background: rgba(255,68,68,0.05); border: 1px solid #ff4444; color: #ff4444; padding: 10px; border-radius: 12px; text-align: center; font-size: 0.85rem; margin: 10px; display: none; }
 
         .welcome-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            text-align: center;
-            padding: 20px 15px;
-            width: 100%;
-            box-sizing: border-box;
-            background: linear-gradient(180deg, 
-                rgba(120, 40, 200, 0.35) 0%, 
-                rgba(236, 72, 153, 0.2) 20%, 
-                rgba(6, 182, 212, 0.12) 45%, 
-                rgba(5, 5, 5, 1) 85%
-            );
-            background-size: 100% 200%;
-            animation: fullAppFlow 10s ease infinite alternate;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start; text-align: center; padding: 20px 15px; width: 100%; box-sizing: border-box;
+            background: linear-gradient(180deg, rgba(120, 40, 200, 0.35) 0%, rgba(236, 72, 153, 0.2) 20%, rgba(6, 182, 212, 0.12) 45%, rgba(5, 5, 5, 1) 85%);
+            background-size: 100% 200%; animation: fullAppFlow 10s ease infinite alternate;
         }
 
         @keyframes fullAppFlow {
-            0% {
-                background: linear-gradient(180deg, 
-                    rgba(147, 51, 234, 0.35) 0%, 
-                    rgba(59, 130, 246, 0.2) 25%, 
-                    rgba(16, 185, 129, 0.1) 50%, 
-                    rgba(5, 5, 5, 1) 90%
-                );
-            }
-            50% {
-                background: linear-gradient(180deg, 
-                    rgba(212, 175, 55, 0.35) 0%, 
-                    rgba(239, 68, 68, 0.2) 25%, 
-                    rgba(147, 51, 234, 0.1) 50%, 
-                    rgba(5, 5, 5, 1) 90%
-                );
-            }
-            100% {
-                background: linear-gradient(180deg, 
-                    rgba(6, 182, 212, 0.35) 0%, 
-                    rgba(236, 72, 153, 0.2) 25%, 
-                    rgba(212, 175, 55, 0.1) 50%, 
-                    rgba(5, 5, 5, 1) 90%
-                );
-            }
+            0% { background: linear-gradient(180deg, rgba(147, 51, 234, 0.35) 0%, rgba(59, 130, 246, 0.2) 25%, rgba(16, 185, 129, 0.1) 50%, rgba(5, 5, 5, 1) 90%); }
+            50% { background: linear-gradient(180deg, rgba(212, 175, 55, 0.35) 0%, rgba(239, 68, 68, 0.2) 25%, rgba(147, 51, 234, 0.1) 50%, rgba(5, 5, 5, 1) 90%); }
+            100% { background: linear-gradient(180deg, rgba(6, 182, 212, 0.35) 0%, rgba(236, 72, 153, 0.2) 25%, rgba(212, 175, 55, 0.1) 50%, rgba(5, 5, 5, 1) 90%); }
         }
 
         .welcome-title { font-size: 1.4rem; font-weight: bold; color: #fff; margin-bottom: 6px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         .welcome-sub { font-size: 0.85rem; color: #ccc; margin-bottom: 20px; }
 
-        .suggestions-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            width: 100%;
-            max-width: 700px;
-        }
-        @media (max-width: 550px) {
-            .suggestions-grid { grid-template-columns: 1fr; }
-        }
+        .suggestions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 100%; max-width: 700px; }
+        @media (max-width: 550px) { .suggestions-grid { grid-template-columns: 1fr; } }
 
         .suggestion-card {
-            background: rgba(18, 18, 18, 0.75);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            padding: 14px;
-            font-size: 0.85rem;
-            color: #fff;
-            cursor: pointer;
-            text-align: right;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            background: rgba(18, 18, 18, 0.75); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 14px; font-size: 0.85rem; color: #fff; cursor: pointer; text-align: right; transition: all 0.25s ease; display: flex; align-items: center; gap: 10px;
         }
-        .suggestion-card:hover {
-            border-color: var(--accent-color);
-            background: rgba(212, 175, 55, 0.15);
-            transform: translateY(-2px);
-        }
+        .suggestion-card:hover { border-color: var(--accent-color); background: rgba(212, 175, 55, 0.15); transform: translateY(-2px); }
 
         .messages-list { padding: 15px; display: flex; flex-direction: column; gap: 15px; }
 
@@ -269,31 +201,11 @@
         .ai-wrapper .msg-actions { justify-content: flex-end; }
 
         .msg-btn { 
-            background: var(--sidebar-bg); 
-            border: 1px solid var(--border-color); 
-            color: var(--accent-color); 
-            font-size: 0.85rem; 
-            width: 32px;
-            height: 32px;
-            border-radius: 8px; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            transition: all 0.2s;
+            background: var(--sidebar-bg); border: 1px solid var(--border-color); color: var(--accent-color); font-size: 0.85rem; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
         }
         .msg-btn:active { transform: scale(0.9); border-color: var(--accent-color); }
 
-        #input-area-wrapper { 
-            display: flex; 
-            flex-direction: column; 
-            background: var(--sidebar-bg); 
-            border-top: 1px solid var(--border-color); 
-            padding: 10px 15px 12px; 
-            gap: 10px; 
-            flex-shrink: 0;
-            z-index: 20;
-        }
+        #input-area-wrapper { display: flex; flex-direction: column; background: var(--sidebar-bg); border-top: 1px solid var(--border-color); padding: 10px 15px 12px; gap: 10px; flex-shrink: 0; z-index: 20; }
         
         #image-preview-container { display: none; align-items: center; gap: 10px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px; padding: 6px 10px; width: fit-content; }
         #image-preview-container img { width: 45px; height: 45px; object-fit: cover; border-radius: 6px; }
@@ -475,7 +387,7 @@
     </div>
 
     <script>
-        // مفتاح Gemini API المكتمل والمفعّل
+        // مفتاح API الخاطئ سابقاً أو المستخرج من Google AI Studio
         const GEMINI_API_KEY = "AIzaSyAeTnEQmRvrXqocPQZeB4rPpr6dCJhoq3A";
 
         // إعدادات Firebase
@@ -514,9 +426,7 @@
             if (user) {
                 try {
                     await database.ref('users/' + user.uid + '/chats').set(allChats);
-                } catch (e) {
-                    console.error("خطأ أثناء حفظ البيانات السحابية:", e);
-                }
+                } catch (e) { console.error("خطأ حفظ البيانات السحابية:", e); }
             } else {
                 localStorage.setItem('keno_guest_chats', JSON.stringify(allChats));
             }
@@ -530,9 +440,7 @@
             } catch (error) {
                 if (error.code === 'auth/popup-blocked') {
                     await auth.signInWithRedirect(provider);
-                } else {
-                    alert("حدث خطأ في التسجيل: " + error.message);
-                }
+                } else { alert("حدث خطأ في التسجيل: " + error.message); }
             }
         };
 
@@ -595,9 +503,8 @@
             const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
             if (now - lastChange < ONE_WEEK_MS) {
-                const remainingMs = ONE_WEEK_MS - (now - lastChange);
-                const remainingDays = Math.ceil(remainingMs / (1000 * 60 * 60 * 24));
-                alert(`عذراً، يمكنك تغيير اسم الحساب مرة واحدة كل أسبوع.\nيرجى الانتظار ${remainingDays} يوم/أيام لتتمكن من التغيير مجدداً.`);
+                const remainingDays = Math.ceil((ONE_WEEK_MS - (now - lastChange)) / (1000 * 60 * 60 * 24));
+                alert(`عذراً، يمكنك تغيير اسم الحساب مرة واحدة كل أسبوع.\nيرجى الانتظار ${remainingDays} يوم لتتمكن من التغيير مجدداً.`);
                 return;
             }
 
@@ -607,40 +514,23 @@
             try {
                 const trimmedName = newName.trim();
                 await user.updateProfile({ displayName: trimmedName });
-                await userRef.update({
-                    displayName: trimmedName,
-                    lastNameChangeTimestamp: now
-                });
+                await userRef.update({ displayName: trimmedName, lastNameChangeTimestamp: now });
 
                 document.getElementById('prof-name').innerText = trimmedName;
                 document.getElementById('sidebar-username').innerText = trimmedName;
                 alert("تم تغيير اسم الحساب بنجاح!");
                 createNewChat();
-            } catch (e) {
-                alert("حدث خطأ في تغيير الاسم: " + e.message);
-            }
+            } catch (e) { alert("حدث خطأ في تغيير الاسم: " + e.message); }
         };
 
-        window.logout = function() {
-            auth.signOut();
-            closeModals();
-        };
-
+        window.logout = function() { auth.signOut(); closeModals(); };
         window.addEventListener('offline', () => { document.getElementById('network-status-bar').style.display = 'block'; });
         window.addEventListener('online', () => { document.getElementById('network-status-bar').style.display = 'none'; });
 
         const userInputEl = document.getElementById('user-input');
         const clearBtn = document.getElementById('clear-input-btn');
-
-        userInputEl.addEventListener('input', () => {
-            clearBtn.style.display = userInputEl.value.trim() ? 'block' : 'none';
-        });
-
-        window.clearInputField = function() {
-            userInputEl.value = '';
-            clearBtn.style.display = 'none';
-            userInputEl.focus();
-        };
+        userInputEl.addEventListener('input', () => { clearBtn.style.display = userInputEl.value.trim() ? 'block' : 'none'; });
+        window.clearInputField = function() { userInputEl.value = ''; clearBtn.style.display = 'none'; userInputEl.focus(); };
 
         const imageInput = document.getElementById('image-input');
         const imageBtn = document.getElementById('image-btn');
@@ -648,7 +538,6 @@
         const previewImg = document.getElementById('image-preview');
 
         imageBtn.onclick = () => imageInput.click();
-
         imageInput.onchange = (e) => {
             const file = e.target.files[0];
             if (file) {
@@ -662,31 +551,12 @@
             }
         };
 
-        window.removeSelectedImage = function() {
-            selectedImageData = null;
-            imageInput.value = '';
-            previewContainer.style.display = 'none';
-        };
+        window.removeSelectedImage = function() { selectedImageData = null; imageInput.value = ''; previewContainer.style.display = 'none'; };
+        function toggleModelMenu(e) { e.stopPropagation(); document.getElementById('model-menu').classList.toggle('active'); }
+        window.onclick = function() { document.getElementById('model-menu').classList.remove('active'); }
+        function selectModel(model, text) { currentAiModel = model; document.getElementById('current-model-text').innerText = text; document.getElementById('model-menu').classList.remove('active'); }
 
-        function toggleModelMenu(e) {
-            e.stopPropagation();
-            document.getElementById('model-menu').classList.toggle('active');
-        }
-
-        window.onclick = function() {
-            document.getElementById('model-menu').classList.remove('active');
-        }
-
-        function selectModel(model, text) {
-            currentAiModel = model;
-            document.getElementById('current-model-text').innerText = text;
-            document.getElementById('model-menu').classList.remove('active');
-        }
-
-        const translations = {
-            ar: { search: "بحث عن محادثة...", newChat: "بدء محادثة جديدة", settings: "الإعدادات", loginMenu: "تسجيل الدخول" },
-            en: { search: "Search chat...", newChat: "New Chat", settings: "Settings", loginMenu: "Login" }
-        };
+        const translations = { ar: { search: "بحث عن محادثة...", newChat: "بدء محادثة جديدة", settings: "الإعدادات", loginMenu: "تسجيل الدخول" }, en: { search: "Search chat...", newChat: "New Chat", settings: "Settings", loginMenu: "Login" } };
         let currentLang = localStorage.getItem('keno_lang') || 'ar';
         
         function applyLanguage() {
@@ -701,11 +571,7 @@
 
         window.clearAllData = function() {
             if(confirm("تحذير: سيتم مسح جميع المحادثات والبيانات بشكل نهائي. هل أنت متأكد؟")) {
-                allChats = [];
-                saveChats();
-                createNewChat();
-                renderSidebarChats();
-                closeModals();
+                allChats = []; saveChats(); createNewChat(); renderSidebarChats(); closeModals();
             }
         };
 
@@ -727,23 +593,15 @@
         const tempBanner = document.getElementById('temp-banner');
         tempChatBtn.onclick = () => {
             isTempChatActive = !isTempChatActive;
-            if(isTempChatActive) {
-                tempChatBtn.classList.add('active');
-                tempBanner.style.display = 'block';
-            } else {
-                tempChatBtn.classList.remove('active');
-                tempBanner.style.display = 'none';
-            }
+            if(isTempChatActive) { tempChatBtn.classList.add('active'); tempBanner.style.display = 'block'; } 
+            else { tempChatBtn.classList.remove('active'); tempBanner.style.display = 'none'; }
             createNewChat();
         };
 
         function renderSidebarChats() {
             const chatList = document.getElementById('chat-list');
             chatList.innerHTML = '';
-            allChats.sort((a, b) => {
-                if (a.pinned === b.pinned) return b.updatedAt - a.updatedAt;
-                return a.pinned ? -1 : 1;
-            });
+            allChats.sort((a, b) => (a.pinned === b.pinned) ? b.updatedAt - a.updatedAt : (a.pinned ? -1 : 1));
             allChats.forEach(chat => {
                 const container = document.createElement('div');
                 container.className = 'chat-item-container';
@@ -768,8 +626,7 @@
         };
 
         window.createNewChat = function() {
-            currentChatId = null;
-            removeSelectedImage();
+            currentChatId = null; removeSelectedImage();
             const container = document.getElementById('chat-container');
             container.innerHTML = '';
             if(isTempChatActive) container.appendChild(tempBanner);
@@ -780,8 +637,7 @@
             const greetingText = currentUser ? `${timeGreeting}، ${document.getElementById('prof-name').innerText || 'مستخدم'} 👋` : "أهلاً بك في KENO AI 👋";
 
             const shuffled = [...usefulPromptsPool].sort(() => 0.5 - Math.random());
-            const card1 = shuffled[0];
-            const card2 = shuffled[1];
+            const card1 = shuffled[0]; const card2 = shuffled[1];
 
             const welcomeDiv = document.createElement('div');
             welcomeDiv.className = 'welcome-screen';
@@ -790,40 +646,22 @@
                 <div class="welcome-title">${greetingText}</div>
                 <div class="welcome-sub">اختر إحدى المقترحات السريعة أو أرفق صورة للترجمة والتحليل:</div>
                 <div class="suggestions-grid">
-                    <div class="suggestion-card" onclick="useSuggestion('${card1.text}')">
-                        <i class="fas ${card1.icon}" style="color:var(--accent-color)"></i>
-                        <span>${card1.text}</span>
-                    </div>
-                    <div class="suggestion-card" onclick="useSuggestion('${card2.text}')">
-                        <i class="fas ${card2.icon}" style="color:var(--accent-color)"></i>
-                        <span>${card2.text}</span>
-                    </div>
-                    <div class="suggestion-card" onclick="useSuggestion('حلل لي محتوى هذه الصورة برمجياً')">
-                        <i class="fas fa-eye" style="color:var(--accent-color)"></i>
-                        <span>تحليل ومعاينة صورة مرفقة</span>
-                    </div>
-                    <div class="suggestion-card" onclick="useSuggestion('كيف أخطط لإدارة وقتي بفعالية؟')">
-                        <i class="fas fa-clock" style="color:var(--accent-color)"></i>
-                        <span>كيف أخطط لإدارة وقتي بفعالية؟</span>
-                    </div>
+                    <div class="suggestion-card" onclick="useSuggestion('${card1.text}')"><i class="fas ${card1.icon}" style="color:var(--accent-color)"></i><span>${card1.text}</span></div>
+                    <div class="suggestion-card" onclick="useSuggestion('${card2.text}')"><i class="fas ${card2.icon}" style="color:var(--accent-color)"></i><span>${card2.text}</span></div>
+                    <div class="suggestion-card" onclick="useSuggestion('حلل لي محتوى هذه الصورة برمجياً')"><i class="fas fa-eye" style="color:var(--accent-color)"></i><span>تحليل ومعاينة صورة مرفقة</span></div>
+                    <div class="suggestion-card" onclick="useSuggestion('كيف أخطط لإدارة وقتي بفعالية؟')"><i class="fas fa-clock" style="color:var(--accent-color)"></i><span>كيف أخطط لإدارة وقتي بفعالية؟</span></div>
                 </div>
             `;
             container.appendChild(welcomeDiv);
-
             if(window.innerWidth <= 768 && document.getElementById('sidebar').classList.contains('open')) toggleSidebar();
         };
 
         document.getElementById('new-chat-btn').onclick = createNewChat;
-
-        window.useSuggestion = function(text) {
-            document.getElementById('user-input').value = text;
-            handleSend();
-        };
+        window.useSuggestion = function(text) { document.getElementById('user-input').value = text; handleSend(); };
 
         window.openChat = function(id) {
             isTempChatActive = false; tempChatBtn.classList.remove('active'); tempBanner.style.display = 'none';
-            currentChatId = id;
-            removeSelectedImage();
+            currentChatId = id; removeSelectedImage();
             const chat = allChats.find(c => c.id === id);
             const container = document.getElementById('chat-container');
             container.innerHTML = '<div class="messages-list" id="messages-list"></div>';
@@ -834,19 +672,15 @@
         window.actionChat = function(id, actionType) {
             const chatIndex = allChats.findIndex(c => c.id === id);
             if (chatIndex === -1) return;
-            
             if (actionType === 'delete') {
-                const confirmMsg = currentLang === 'ar' ? "هل أنت متأكد أنك تريد حذف هذه المحادثة؟" : "Are you sure you want to delete this chat?";
-                if (confirm(confirmMsg)) {
+                if (confirm("هل أنت متأكد أنك تريد حذف هذه المحادثة؟")) {
                     allChats.splice(chatIndex, 1);
                     if (currentChatId === id) window.createNewChat();
-                    saveChats();
-                    renderSidebarChats();
+                    saveChats(); renderSidebarChats();
                 }
             } else if (actionType === 'pin') {
                 allChats[chatIndex].pinned = !allChats[chatIndex].pinned;
-                saveChats();
-                renderSidebarChats();
+                saveChats(); renderSidebarChats();
             }
         };
 
@@ -857,9 +691,7 @@
 
             let list = document.getElementById('messages-list');
             if(!list) {
-                list = document.createElement('div');
-                list.className = 'messages-list';
-                list.id = 'messages-list';
+                list = document.createElement('div'); list.className = 'messages-list'; list.id = 'messages-list';
                 container.appendChild(list);
             }
 
@@ -870,118 +702,47 @@
             msgDiv.classList.add('message', sender === 'user' ? 'user-msg' : 'ai-msg');
             
             if (imageData) {
-                const imgEl = document.createElement('img');
-                imgEl.src = imageData;
+                const imgEl = document.createElement('img'); imgEl.src = imageData;
                 msgDiv.appendChild(imgEl);
             }
-
             if (text) {
-                const textSpan = document.createElement('span');
-                textSpan.textContent = text;
+                const textSpan = document.createElement('span'); textSpan.textContent = text;
                 msgDiv.appendChild(textSpan);
             }
 
             const msgTime = savedTime || new Date().toLocaleTimeString('ar-IQ', { hour: '2-digit', minute: '2-digit' });
-            const timeEl = document.createElement('div');
-            timeEl.className = 'msg-time';
-            timeEl.innerText = msgTime;
-
+            const timeEl = document.createElement('div'); timeEl.className = 'msg-time'; timeEl.innerText = msgTime;
             wrapper.appendChild(msgDiv);
 
             if (sender === 'user') {
-                const userActionsDiv = document.createElement('div');
-                userActionsDiv.className = 'msg-actions';
-                
-                const editBtn = document.createElement('button');
-                editBtn.className = 'msg-btn';
-                editBtn.title = "تعديل الكلمة";
-                editBtn.innerHTML = '<i class="fas fa-edit"></i>';
-                editBtn.onclick = () => {
-                    document.getElementById('user-input').value = text;
-                    document.getElementById('user-input').focus();
-                    document.getElementById('clear-input-btn').style.display = 'block';
-                };
+                const userActionsDiv = document.createElement('div'); userActionsDiv.className = 'msg-actions';
+                const editBtn = document.createElement('button'); editBtn.className = 'msg-btn'; editBtn.title = "تعديل الكلمة"; editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+                editBtn.onclick = () => { document.getElementById('user-input').value = text; document.getElementById('user-input').focus(); document.getElementById('clear-input-btn').style.display = 'block'; };
 
-                const retryBtn = document.createElement('button');
-                retryBtn.className = 'msg-btn';
-                retryBtn.title = "إعادة البحث";
-                retryBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
-                retryBtn.onclick = () => {
-                    document.getElementById('user-input').value = text;
-                    handleSend();
-                };
+                const retryBtn = document.createElement('button'); retryBtn.className = 'msg-btn'; retryBtn.title = "إعادة البحث"; retryBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
+                retryBtn.onclick = () => { document.getElementById('user-input').value = text; handleSend(); };
 
-                const copyUserBtn = document.createElement('button');
-                copyUserBtn.className = 'msg-btn';
-                copyUserBtn.title = "نسخ النص";
-                copyUserBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                copyUserBtn.onclick = () => {
-                    navigator.clipboard.writeText(text);
-                    copyUserBtn.innerHTML = '<i class="fas fa-check"></i>';
-                    setTimeout(() => copyUserBtn.innerHTML = '<i class="fas fa-copy"></i>', 1500);
-                };
+                const copyUserBtn = document.createElement('button'); copyUserBtn.className = 'msg-btn'; copyUserBtn.title = "نسخ النص"; copyUserBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                copyUserBtn.onclick = () => { navigator.clipboard.writeText(text); copyUserBtn.innerHTML = '<i class="fas fa-check"></i>'; setTimeout(() => copyUserBtn.innerHTML = '<i class="fas fa-copy"></i>', 1500); };
 
-                userActionsDiv.appendChild(editBtn);
-                userActionsDiv.appendChild(retryBtn);
-                userActionsDiv.appendChild(copyUserBtn);
+                userActionsDiv.appendChild(editBtn); userActionsDiv.appendChild(retryBtn); userActionsDiv.appendChild(copyUserBtn);
                 wrapper.appendChild(userActionsDiv);
             } 
             else if (sender === 'ai') {
-                const aiActionsDiv = document.createElement('div');
-                aiActionsDiv.className = 'msg-actions';
-                
-                const copyBtn = document.createElement('button');
-                copyBtn.className = 'msg-btn';
-                copyBtn.title = "نسخ الإجابة";
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                copyBtn.onclick = () => {
-                    navigator.clipboard.writeText(text);
-                    copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-                    setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i>', 1500);
-                };
+                const aiActionsDiv = document.createElement('div'); aiActionsDiv.className = 'msg-actions';
+                const copyBtn = document.createElement('button'); copyBtn.className = 'msg-btn'; copyBtn.title = "نسخ الإجابة"; copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                copyBtn.onclick = () => { navigator.clipboard.writeText(text); copyBtn.innerHTML = '<i class="fas fa-check"></i>'; setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i>', 1500); };
 
-                const speakBtn = document.createElement('button');
-                speakBtn.className = 'msg-btn';
-                speakBtn.title = "قراءة صوتية";
-                speakBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                const speakBtn = document.createElement('button'); speakBtn.className = 'msg-btn'; speakBtn.title = "قراءة صوتية"; speakBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
                 speakBtn.onclick = () => speakText(text);
 
-                const shareBtn = document.createElement('button');
-                shareBtn.className = 'msg-btn';
-                shareBtn.title = "مشاركة";
-                shareBtn.innerHTML = '<i class="fas fa-share-alt"></i>';
+                const shareBtn = document.createElement('button'); shareBtn.className = 'msg-btn'; shareBtn.title = "مشاركة"; shareBtn.innerHTML = '<i class="fas fa-share-alt"></i>';
                 shareBtn.onclick = () => {
-                    if (navigator.share) {
-                        navigator.share({ title: 'KENO AI', text: text });
-                    } else {
-                        navigator.clipboard.writeText(text);
-                        alert('تم نسخ النص للمشاركة!');
-                    }
+                    if (navigator.share) navigator.share({ title: 'KENO AI', text: text });
+                    else { navigator.clipboard.writeText(text); alert('تم نسخ النص للمشاركة!'); }
                 };
 
-                const likeBtn = document.createElement('button');
-                likeBtn.className = 'msg-btn';
-                likeBtn.title = "أعجبني";
-                likeBtn.innerHTML = '<i class="fas fa-thumbs-up"></i>';
-                likeBtn.onclick = () => {
-                    likeBtn.style.color = '#10b981';
-                    dislikeBtn.style.color = 'var(--accent-color)';
-                };
-
-                const dislikeBtn = document.createElement('button');
-                dislikeBtn.className = 'msg-btn';
-                dislikeBtn.title = "لم يعجبني";
-                dislikeBtn.innerHTML = '<i class="fas fa-thumbs-down"></i>';
-                dislikeBtn.onclick = () => {
-                    dislikeBtn.style.color = '#ff4444';
-                    likeBtn.style.color = 'var(--accent-color)';
-                };
-
-                aiActionsDiv.appendChild(copyBtn);
-                aiActionsDiv.appendChild(speakBtn);
-                aiActionsDiv.appendChild(shareBtn);
-                aiActionsDiv.appendChild(likeBtn);
-                aiActionsDiv.appendChild(dislikeBtn);
+                aiActionsDiv.appendChild(copyBtn); aiActionsDiv.appendChild(speakBtn); aiActionsDiv.appendChild(shareBtn);
                 wrapper.appendChild(aiActionsDiv);
             }
 
@@ -1018,17 +779,12 @@
             recognition.interimResults = false;
 
             voiceBtn.onclick = () => {
-                try {
-                    recognition.start();
-                    voiceBtn.style.color = '#ff4444';
-                } catch(e) { recognition.stop(); }
+                try { recognition.start(); voiceBtn.style.color = '#ff4444'; } catch(e) { recognition.stop(); }
             };
 
             recognition.onresult = (e) => {
-                const transcript = e.results[0][0].transcript;
-                document.getElementById('user-input').value = transcript;
-                clearBtn.style.display = 'block';
-                voiceBtn.style.color = 'var(--accent-color)';
+                document.getElementById('user-input').value = e.results[0][0].transcript;
+                clearBtn.style.display = 'block'; voiceBtn.style.color = 'var(--accent-color)';
             };
 
             recognition.onerror = () => { voiceBtn.style.color = 'var(--accent-color)'; };
@@ -1042,61 +798,38 @@
 
             const currentImage = selectedImageData;
             addMessageToUI(text, 'user', true, currentImage);
-            clearInputField();
-            removeSelectedImage();
+            clearInputField(); removeSelectedImage();
             
             const typingMsg = addMessageToUI(currentAiModel === 'accurate' ? 'KENO يفكر بعمق (دقيق)...' : 'جاري معالجة الإجابة (سريع)...', 'ai', false);
             typingMsg.classList.add('typing');
 
             try {
                 const customMemory = localStorage.getItem('keno_ai_memory') || '';
-                
-                const strictSystemInstruction = `
-أنت KENO AI، مساعد ذكي ومحترف. يجب عليك الالتزام بالتعليمات الأمنية والقانونية الصارمة التالية بشكل مطلق دون استثناء:
-
-1. المحتوى الإباحي والجنسی (+18): يُمنع منعاً باتاً الإجابة أو التفاعل مع أي سؤال يتضمن إيحاءات أو محتوى +18، ويجب أن يكون ردك حصراً وفي كل الأحوال: "لا يمكنني أن أجاوبك على هذا السؤال".
-2. السلامة الشخصية والقانونية (الانتحار، الأسلحة، القتل، الهروب من المنزل، الجرائم): يُمنع منعاً باتاً الإجابة أو إعطاء نصائح أو تعليمات أو مناقشة مواضيع تتعلق بالانتحار، إيذاء النفس، طرق القتل، استخدام أو تصنيع الأسلحة، الهروب من المنزل، أو أي أنشطة غير قانونية أو خطرة. ويجب أن يكون ردك حصراً: "لا يمكنني أن أجاوب على سؤالك".
-3. الطائفية والنقاشات المذهبية (سنة، شيعة): يُمنع منعاً باتاً الخوض في التفضيل بين المذاهب الإسلامية، أو تحديد أيهما صح، أو إثارة النعرات الطائفية، ويجب أن يكون ردك حصراً: "أنا لست شيخ".
-4. الأسئلة الدينية العامة والتاريخية (مثل: من هو أول نبي؟، متى بنيت الكعبة؟): يُسمح بالإجابة عليها طبيعياً وبشكل حيادي ودقيق دون أي حظر.
-5. ذاكرة المستخدم المخصصة إن وجدت: ${customMemory}
-`;
+                const strictSystemInstruction = `أنت KENO AI، مساعد ذكي ومحترف. الالتزام بالتعليمات التالية:
+1. المحتوى الإباحي والجنسی (+18): الرد حصراً: "لا يمكنني أن أجاوبك على هذا السؤال".
+2. السلامة الشخصية (انتحار، أسلحة، قتل): الرد حصراً: "لا يمكنني أن أجاوب على سؤالك".
+3. الطائفية والمذاهب: الرد حصراً: "أنا لست شيخ".
+4. الأسئلة العامة والتاريخية: الإجابة بحيادية ودقة.
+5. ذاكرة المستخدم: ${customMemory}`;
 
                 let contents = [];
                 if (currentImage) {
-                    const base64Data = currentImage.split(',')[1];
-                    const mimeType = currentImage.split(';')[0].split(':')[1];
-                    contents = [{
-                        parts: [
-                            { text: text || "اشرح هذه الصورة بالتفصيل." },
-                            { inline_data: { mime_type: mimeType, data: base64Data } }
-                        ]
-                    }];
-                } else {
-                    contents = [{ parts: [{ text }] }];
-                }
+                    contents = [{ parts: [{ text: text || "اشرح هذه الصورة بالتفصيل." }, { inline_data: { mime_type: currentImage.split(';')[0].split(':')[1], data: currentImage.split(',')[1] } }] }];
+                } else { contents = [{ parts: [{ text }] }]; }
 
                 const minDelay = currentAiModel === 'accurate' ? 5000 : 2000;
                 const delayPromise = new Promise(resolve => setTimeout(resolve, minDelay));
 
                 const fetchPromise = fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        system_instruction: {
-                            parts: [{ text: strictSystemInstruction }]
-                        },
-                        contents: contents
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ system_instruction: { parts: [{ text: strictSystemInstruction }] }, contents: contents })
                 });
 
                 const [response] = await Promise.all([fetchPromise, delayPromise]);
                 const data = await response.json();
 
-                if (!response.ok) {
-                    throw new Error(data.error?.message || "فشل الاتصال بالذكاء الاصطناعي");
-                }
+                if (!response.ok) throw new Error(data.error?.message || "فشل الاتصال بالسيرفر");
 
                 let aiReply = "عذراً، لم أتمكن من الحصول على إجابة.";
                 if (data.candidates && data.candidates[0].content.parts[0].text) {
@@ -1122,11 +855,7 @@
 
         window.closeModals = function() { document.querySelectorAll('.modal').forEach(m => m.classList.remove('active')); };
         document.getElementById('settings-btn').onclick = () => { toggleSidebar(); closeModals(); document.getElementById('settings-modal').classList.add('active'); };
-        document.getElementById('login-open-btn').onclick = () => { 
-            toggleSidebar(); 
-            closeModals(); 
-            document.getElementById('login-modal').classList.add('active'); 
-        };
+        document.getElementById('login-open-btn').onclick = () => { toggleSidebar(); closeModals(); document.getElementById('login-modal').classList.add('active'); };
 
         let isLight = localStorage.getItem('keno_theme') === 'light';
         if (isLight) document.body.classList.add('light-theme');
@@ -1137,8 +866,7 @@
         };
         document.getElementById('lang-toggle-btn').onclick = () => {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            localStorage.setItem('keno_lang', currentLang);
-            applyLanguage();
+            localStorage.setItem('keno_lang', currentLang); applyLanguage();
         };
 
         const memoryTextarea = document.getElementById('memory-textarea');
